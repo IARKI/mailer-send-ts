@@ -1,4 +1,4 @@
-import { Recipient } from "../../models/Recipient";
+import { Recipient } from "../../models";
 
 test("Recipient", () => {
   const recipient = new Recipient("test@mail.com", "John");

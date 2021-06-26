@@ -1,4 +1,4 @@
-import { Sender } from "../../models/Sender";
+import { Sender } from "../../models";
 
 test("Sender", () => {
   const sender = new Sender("sender@mail.com", "Michel");
