@@ -1,5 +1,5 @@
 import got from "got";
-import { MailerSend } from "../modules/MailerSend.module";
+import { APIResponse } from "../modules/MailerSend.module";
 
 export class RequestService<T> {
   private readonly apiKey: string;
@@ -10,7 +10,7 @@ export class RequestService<T> {
     this.baseUrl = baseUrl;
   }
 
-  async request(path: string, data: T): Promise<MailerSend.APIResponse> {
+  async request(path: string, data: T): Promise<APIResponse> {
     try {
       const requestParams = { headers: { Authorization: `Bearer ${this.apiKey}` }, json: data };
       const { headers, body, statusCode } = await got.post(`${this.baseUrl}${path}`, requestParams);

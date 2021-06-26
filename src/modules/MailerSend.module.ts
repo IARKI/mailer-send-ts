@@ -5,37 +5,36 @@ export class MailerSend {
   private baseUrl: string = "https://api.mailersend.com/v1";
   email: Email;
 
-  constructor(config: MailerSend.MailerSendConfig) {
+  constructor(config: MailerSendConfig) {
     this.apiKey = config.apiKey;
     this.email = new Email(config.apiKey, this.baseUrl);
   }
 }
 
-export namespace MailerSend {
-  export interface Variable {
-    email: string;
-    substitutions: Array<VariableSubstitution>;
-  }
 
-  export interface VariableSubstitution {
-    var: string;
-    value: string;
-  }
+export interface Variable {
+  email: string;
+  substitutions: VariableSubstitution[];
+}
 
-  export interface Personalization {
-    email: string;
-    data: {
-      [key: string]: string;
-    }
-  }
+export interface VariableSubstitution {
+  var: string;
+  value: string;
+}
 
-  export interface APIResponse {
-    headers: any;
-    body: any;
-    statusCode: number;
+export interface Personalization {
+  email: string;
+  data: {
+    [key: string]: string;
   }
+}
 
-  export interface MailerSendConfig {
-    apiKey: string;
-  }
+export interface APIResponse {
+  headers: any;
+  body: any;
+  statusCode: number;
+}
+
+export interface MailerSendConfig {
+  apiKey: string;
 }

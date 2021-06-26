@@ -1,22 +1,22 @@
 import { Recipient } from "./Recipient";
 import { Sender } from "./Sender";
 import { Attachment } from "./Attachment";
-import { MailerSend } from "../modules/MailerSend.module";
+import { Personalization, Variable } from "../modules/MailerSend.module";
 
 export class EmailParams {
   from: Sender;
-  to: Array<Recipient>;
-  cc?: Array<Recipient>;
-  bcc?: Array<Recipient>;
-  reply_to?: Recipient;
+  to: Recipient[];
+  cc?: Recipient[];
+  bcc?: Recipient[];
+  reply_to?: Recipient; // tslint:disable-line
   subject: string;
   text: string;
   html: string;
-  attachments?: Array<Attachment>;
-  template_id?: string;
-  tags?: Array<string>;
-  variables?: Array<MailerSend.Variable>;
-  personalization?: Array<MailerSend.Personalization>;
+  attachments?: Attachment[];
+  template_id?: string; // tslint:disable-line
+  tags?: string[];
+  variables?: Variable[];
+  personalization?: Personalization[];
 
   constructor(config?: any) {
     this.from = config?.from;
@@ -39,17 +39,17 @@ export class EmailParams {
     return this;
   }
 
-  setTo(to: Array<Recipient>): EmailParams {
+  setTo(to: Recipient[]): EmailParams {
     this.to = to;
     return this;
   }
 
-  setCc(cc: Array<Recipient>): EmailParams {
+  setCc(cc: Recipient[]): EmailParams {
     this.cc = cc;
     return this;
   }
 
-  setBcc(bcc: Array<Recipient>): EmailParams {
+  setBcc(bcc: Recipient[]): EmailParams {
     this.bcc = bcc;
     return this;
   }
@@ -74,7 +74,7 @@ export class EmailParams {
     return this;
   }
 
-  setAttachments(attachments: Array<Attachment>): EmailParams {
+  setAttachments(attachments: Attachment[]): EmailParams {
     this.attachments = attachments;
     return this;
   }
@@ -84,17 +84,17 @@ export class EmailParams {
     return this;
   }
 
-  setTags(tags: Array<string>): EmailParams {
+  setTags(tags: string[]): EmailParams {
     this.tags = tags;
     return this;
   }
 
-  setVariables(variables: Array<MailerSend.Variable>): EmailParams {
+  setVariables(variables: Variable[]): EmailParams {
     this.variables = variables;
     return this;
   }
 
-  setPersonalization(personalization: Array<MailerSend.Personalization>): EmailParams {
+  setPersonalization(personalization: Personalization[]): EmailParams {
     this.personalization = personalization;
     return this;
   }
