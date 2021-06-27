@@ -49,7 +49,7 @@ const emailParams = new EmailParams()
   .setText("Hello world!")
   .setHtml("<b>Hello world!</b>");
 
-mailerSend.send(emailParams);
+mailerSend.email.send(emailParams);
 ```
 
 ### Add CC, BCC recipients
@@ -80,7 +80,7 @@ const emailParams = new EmailParams()
   .setText("Hello world!")
   .setHtml("<b>Hello world!</b>");
 
-mailerSend.send(emailParams);
+mailerSend.email.send(emailParams);
 ```
 
 ### Send a template-based email
@@ -102,7 +102,7 @@ const emailParams = new EmailParams()
   .setSubject("Your subject")
   .setTemplateId("your_template_id");
 
-mailerSend.send(emailParams);
+mailerSend.email.send(emailParams);
 ```
 
 ### Advanced personalization
@@ -134,7 +134,7 @@ const emailParams = new EmailParams()
   .setText("This is the text content, {{ test }}")
   .setHtml("This is the HTML content, {{ test }}");
 
-mailerSend.send(emailParams);
+mailerSend.email.send(emailParams);
 ```
 ### Simple personalization
 
@@ -168,7 +168,7 @@ const emailParams = new EmailParams()
   .setHtml("This is the HTML content, {$test}")
   .setText("This is the text content, {$test}");
 
-mailerSend.send(emailParams);
+mailerSend.email.send(emailParams);
 ```
 ### Send email with attachment
 ```typescript
@@ -195,5 +195,5 @@ const emailParams = new EmailParams()
   .setText("This is the text content")
   .setAttachments(attachments);
 
-mailerSend.send(emailParams);
+mailerSend.email.send(emailParams);
 ```
