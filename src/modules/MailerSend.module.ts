@@ -1,8 +1,8 @@
-import { Email } from "./Email.module";
+import { Email } from './Email.module';
 
 export class MailerSend {
   private readonly apiKey: string;
-  private baseUrl: string = "https://api.mailersend.com/v1";
+  private baseUrl: string = 'https://api.mailersend.com/v1';
   email: Email;
 
   constructor(config: MailerSendConfig) {
@@ -10,7 +10,6 @@ export class MailerSend {
     this.email = new Email(config.apiKey, this.baseUrl);
   }
 }
-
 
 export interface Variable {
   email: string;
@@ -26,7 +25,7 @@ export interface Personalization {
   email: string;
   data: {
     [key: string]: string;
-  }
+  };
 }
 
 export interface APIResponse {

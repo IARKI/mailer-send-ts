@@ -1,6 +1,6 @@
-import { EmailParams } from "../models";
-import { RequestService } from "../services/request.service";
-import { APIResponse } from "./MailerSend.module";
+import { EmailParams } from '../models';
+import { RequestService } from '../services/request.service';
+import { APIResponse } from './MailerSend.module';
 
 export class Email extends RequestService<EmailParams> {
   constructor(apiKey: string, baseUrl: string) {
@@ -8,6 +8,6 @@ export class Email extends RequestService<EmailParams> {
   }
 
   async send(params: EmailParams): Promise<APIResponse> {
-    return await this.request("/email", params);
+    return await this.request('/email', params);
   }
 }
