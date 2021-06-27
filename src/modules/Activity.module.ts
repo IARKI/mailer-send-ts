@@ -6,7 +6,7 @@ export class Activity extends RequestService {
     super(apiKey, baseUrl);
   }
 
-  async domain(domainId: string, queryParams: ActivityQueryParams): Promise<APIResponse> {
+  async domain(domainId: string, queryParams?: ActivityQueryParams): Promise<APIResponse> {
     return await this.get(`/activity/${domainId}`, queryParams);
   }
 }
