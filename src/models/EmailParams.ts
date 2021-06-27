@@ -1,7 +1,7 @@
-import { Recipient } from "./Recipient";
-import { Sender } from "./Sender";
-import { Attachment } from "./Attachment";
-import { Personalization, Variable } from "../modules/MailerSend.module";
+import { Recipient } from './Recipient';
+import { Sender } from './Sender';
+import { Attachment } from './Attachment';
+import { Personalization, Variable } from '../modules/MailerSend.module';
 
 export class EmailParams {
   from: Sender;
@@ -99,5 +99,3 @@ export class EmailParams {
     return this;
   }
 }
-
-

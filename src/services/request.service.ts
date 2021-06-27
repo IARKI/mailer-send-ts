@@ -1,5 +1,5 @@
-import got from "got";
-import { APIResponse } from "../modules/MailerSend.module";
+import got from 'got';
+import { APIResponse } from '../modules/MailerSend.module';
 
 export class RequestService<T> {
   private readonly apiKey: string;
