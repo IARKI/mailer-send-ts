@@ -1,5 +1,5 @@
-import { RequestService } from "../services/request.service";
-import { APIResponse } from "./MailerSend.module";
+import { RequestService } from '../services/request.service';
+import { APIResponse } from './MailerSend.module';
 
 export class Activity extends RequestService {
   constructor(apiKey: string, baseUrl: string) {
@@ -20,15 +20,15 @@ export interface ActivityQueryParams {
 }
 
 export enum ActivityEventType {
-  PROCESSED = "processed",
-  QUEUED = "queued",
-  SENT = "sent",
-  DELIVERED = "delivered",
-  SOF_BOUNCED = "soft_bounced",
-  HARD_BOUNCED = "hard_bounced",
-  JUNK = "junk",
-  OPENED = "opened",
-  CLICKED = "clicked",
-  UNSUBSCRIBED = "unsubscribed",
-  SPAM_COMPLAINTS = "spam_complaints"
+  PROCESSED = 'processed',
+  QUEUED = 'queued',
+  SENT = 'sent',
+  DELIVERED = 'delivered',
+  SOF_BOUNCED = 'soft_bounced',
+  HARD_BOUNCED = 'hard_bounced',
+  JUNK = 'junk',
+  OPENED = 'opened',
+  CLICKED = 'clicked',
+  UNSUBSCRIBED = 'unsubscribed',
+  SPAM_COMPLAINTS = 'spam_complaints',
 }
