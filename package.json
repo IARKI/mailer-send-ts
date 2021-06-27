@@ -21,7 +21,18 @@
     "postversion": "git push && git push --tags",
     "prepare": "npm run build"
   },
-  "author": "IAROMIR TRINTA",
+  "author": {
+    "name": "Iaromir Trinta",
+    "email": "iarki90@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/IARKI/mailer-send-ts/issues"
+  },
+  "homepage": "https://github.com/IARKI/mailer-send-ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IARKI/mailer-send-ts.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^26.0.23",
