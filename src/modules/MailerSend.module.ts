@@ -1,31 +1,17 @@
-import { Email } from './Email.module';
+import { Email } from "./Email.module";
+import { Activity } from "./Activity.module";
 
 export class MailerSend {
   private readonly apiKey: string;
-  private baseUrl: string = 'https://api.mailersend.com/v1';
+  private baseUrl: string = "https://api.mailersend.com/v1";
   email: Email;
+  activity: Activity;
 
   constructor(config: MailerSendConfig) {
     this.apiKey = config.apiKey;
     this.email = new Email(config.apiKey, this.baseUrl);
+    this.activity = new Activity(config.apiKey, this.baseUrl);
   }
-}
-
-export interface Variable {
-  email: string;
-  substitutions: VariableSubstitution[];
-}
-
-export interface VariableSubstitution {
-  var: string;
-  value: string;
-}
-
-export interface Personalization {
-  email: string;
-  data: {
-    [key: string]: string;
-  };
 }
 
 export interface APIResponse {
