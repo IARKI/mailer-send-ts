@@ -1,5 +1,5 @@
-import got from 'got';
-import { APIResponse } from '../modules/MailerSend.module';
+import got from "got";
+import { APIResponse } from "../modules/MailerSend.module";
 
 export class RequestService {
   private readonly apiKey: string;
@@ -12,7 +12,11 @@ export class RequestService {
 
   async post(path: string, data: any): Promise<APIResponse> {
     try {
-      const requestParams = { headers: { Authorization: `Bearer ${this.apiKey}` }, json: data };
+      const requestParams = {
+        headers: { Authorization: `Bearer ${this.apiKey}` },
+        json: data,
+        responseType: "json" as any
+      };
       const { headers, body, statusCode } = await got.post(`${this.baseUrl}${path}`, requestParams);
       return { headers, body, statusCode };
     } catch (e) {
@@ -22,7 +26,11 @@ export class RequestService {
 
   async get(path: string, queryParams?: any): Promise<APIResponse> {
     try {
-      const requestParams = { headers: { Authorization: `Bearer ${this.apiKey}` }, searchParams: queryParams };
+      const requestParams = {
+        headers: { Authorization: `Bearer ${this.apiKey}` },
+        searchParams: queryParams,
+        responseType: "json" as any
+      };
       const { headers, body, statusCode } = await got.get(`${this.baseUrl}${path}`, requestParams);
       return { headers, body, statusCode };
     } catch (e) {
