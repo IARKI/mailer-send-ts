@@ -1,7 +1,7 @@
 import { EmailParams } from "../../models";
 
-describe("EmailParams", () => {
-  test("Constructor", () => {
+describe("EmailParams Model", () => {
+  it("Constructor", () => {
     const params = new EmailParams({
       from: { email: "from@email.com", name: "FromSender" },
       to: [{ email: "to@email.com", name: "ToRecipient" }],
@@ -39,7 +39,7 @@ describe("EmailParams", () => {
     expect(Array.isArray(params?.personalization)).toBe(true);
     expect(params?.personalization?.length).toBe(1);
   });
-  test("Setters", () => {
+  it("Setters", () => {
     const params = new EmailParams()
       .setFrom({ email: "from@email.com", name: "FromSender" })
       .setTo([{ email: "to@email.com", name: "ToRecipient" }])

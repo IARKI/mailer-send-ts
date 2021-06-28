@@ -1,7 +1,7 @@
 <a href="https://www.mailersend.com"><img src="https://www.mailersend.com/images/logo.svg" width="200px"/></a>
 
 # Typescript MailerSend library for NodeJS
-
+![GitHub top language](https://img.shields.io/github/languages/top/IARKI/mailer-send-ts) ![NPM](https://img.shields.io/npm/l/mailer-send-ts) ![npm](https://img.shields.io/npm/v/mailer-send-ts)
 ### For official javascript library please visit <a href="https://github.com/mailersend/mailersend-nodejs">HERE</a>
 ### For response Body, Headers and Status Codes please visit <a href="https://developers.mailersend.com/">Official API Docs</a>
 ### In development

@@ -10,7 +10,7 @@ export class RequestService {
     this.baseUrl = baseUrl;
   }
 
-  async post(path: string, data: any): Promise<APIResponse> {
+  protected async post(path: string, data: any): Promise<APIResponse> {
     try {
       const requestParams = {
         headers: { Authorization: `Bearer ${this.apiKey}` },
@@ -24,7 +24,7 @@ export class RequestService {
     }
   }
 
-  async get(path: string, queryParams?: any): Promise<APIResponse> {
+  protected async get(path: string, queryParams?: any): Promise<APIResponse> {
     try {
       const requestParams = {
         headers: { Authorization: `Bearer ${this.apiKey}` },

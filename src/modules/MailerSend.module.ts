@@ -11,8 +11,8 @@ export class MailerSend {
 
   constructor(config: MailerSendConfig) {
     this.apiKey = config.apiKey;
-    this.email = new Email(config.apiKey, this.baseUrl);
     this.activity = new Activity(config.apiKey, this.baseUrl);
+    this.email = new Email(config.apiKey, this.baseUrl);
     this.message = new Message(config.apiKey, this.baseUrl);
   }
 }
