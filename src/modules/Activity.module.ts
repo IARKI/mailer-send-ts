@@ -1,5 +1,6 @@
 import { RequestService } from "../services/request.service";
 import { APIResponse } from "./MailerSend.module";
+import { Pagination } from "../models";
 
 export class Activity extends RequestService {
   constructor(apiKey: string, baseUrl: string) {
@@ -11,9 +12,7 @@ export class Activity extends RequestService {
   }
 }
 
-export interface ActivityQueryParams {
-  page?: number;
-  limit?: number;
+export interface ActivityQueryParams extends Pagination {
   date_from?: number;
   date_to?: number;
   event?: ActivityEventType[];
