@@ -34,7 +34,11 @@ export class RequestService {
       const { headers, body, statusCode } = await got.get(`${this.baseUrl}${path}`, requestParams);
       return { headers, body, statusCode };
     } catch (e) {
-      throw e;
+      if (e?.response) {
+        throw { headers: e.response.headers, body: e.response.body, statusCode: e.response.statusCode };
+      } else {
+        throw e;
+      }
     }
   }
 }
