@@ -8,6 +8,8 @@
 ### Supported APIs
 **Email** - Send an email
 
+**Activity** - Get a list of activities
+
 # Installation
 
 ## Setup
@@ -27,7 +29,7 @@ const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 ```
 
 ## Email
-
+<a href="https://developers.mailersend.com/api/v1/email.html">API Documentation</a>
 ### Send an email
 
 ```typescript
@@ -196,4 +198,22 @@ const emailParams = new EmailParams()
   .setAttachments(attachments);
 
 mailerSend.email.send(emailParams);
+```
+## Activity
+<a href="https://developers.mailersend.com/api/v1/activity.html">API Documentation</a>
+### Get a list of activities
+```typescript
+import { MailerSend } from "mailer-send-ts";
+import { ActivityEventType, ActivityQueryParams } from "./Activity.module";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+const queryParams: ActivityQueryParams = {
+  limit: 10, // Default 25.Min 10, Max 50
+  page: 2,
+  date_from: 1443651141, // Format: 1443651141
+  date_to: 1443651141, // Format: 1443651141
+  event: [ActivityEventType.SENT, ActivityEventType.SOF_BOUNCED, ...]
+}
+// Query params are not required
+const activitiy = await mailerSend.activity.domain("your_domain_id", queryParams);
 ```
