@@ -23,7 +23,7 @@ export enum ActivityEventType {
   QUEUED = "queued",
   SENT = "sent",
   DELIVERED = "delivered",
-  SOF_BOUNCED = "soft_bounced",
+  SOFT_BOUNCED = "soft_bounced",
   HARD_BOUNCED = "hard_bounced",
   JUNK = "junk",
   OPENED = "opened",

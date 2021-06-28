@@ -241,7 +241,7 @@ const queryParams: ActivityQueryParams = {
   page: 2,
   date_from: 1443651141, // Format: 1443651141
   date_to: 1443651141, // Format: 1443651141
-  event: [ActivityEventType.SENT, ActivityEventType.SOF_BOUNCED, ...]
+  event: [ActivityEventType.SENT, ActivityEventType.SOFT_BOUNCED, ...]
 }
 // Query params are not required
 const activitiy = await mailerSend.activity.domain("your_domain_id", queryParams);
