@@ -1,9 +1,9 @@
-import { Email } from './Email.module';
-import { Activity } from './Activity.module';
+import { Email } from "./Email.module";
+import { Activity } from "./Activity.module";
 
 export class MailerSend {
   private readonly apiKey: string;
-  private baseUrl: string = 'https://api.mailersend.com/v1';
+  private baseUrl: string = "https://api.mailersend.com/v1";
   email: Email;
   activity: Activity;
 

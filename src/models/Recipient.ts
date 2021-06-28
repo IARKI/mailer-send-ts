@@ -1,4 +1,4 @@
-import { Sender } from './Sender';
+import { Sender } from "./Sender";
 
 export class Recipient extends Sender {
   constructor(email: string, name?: string) {
