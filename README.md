@@ -14,10 +14,10 @@
 - [ ] Opens by user-agent name
 - [ ] Opens by reading environment
 ### Domains
-- [ ] Get a list of domains
-- [ ] Get a single domain
+- [X] Get a list of domains
+- [X] Get a single domain
 - [ ] Delete a domain
-- [ ] Get recipients for a domain
+- [X] Get recipients for a domain
 - [ ] Update domain settings
 ### Email
 - [X] Send an email
@@ -244,7 +244,7 @@ const queryParams: ActivityQueryParams = {
   event: [ActivityEventType.SENT, ActivityEventType.SOFT_BOUNCED, ...]
 }
 // Query params are not required
-const activitiy = await mailerSend.activity.domain("your_domain_id", queryParams);
+const activities = await mailerSend.activity.domain("your_domain_id", queryParams);
 ```
 
 ## Messages
@@ -269,6 +269,45 @@ const messages = await mailerSend.message.list(queryParams);
 import { MailerSend } from "mailer-send-ts";
 
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const message = await mailerSend.message.single("your_message_id");
+```
+## Domains
+<a href="https://developers.mailersend.com/api/v1/domains.html">API Documentation</a>
+### Get a list of domains
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+const queryParams: MessageQueryParams = {
+  limit: 10, // Default 25.Min 10, Max 50
+  page: 2,
+  verified: true // Not required
+}
 // Query params are not required
-const messages = await mailerSend.message.single("your_message_id");
+const domains = await mailerSend.domain.list(queryParams);
+```
+### Get a single domain
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const domain = await mailerSend.domain.single("your_domain_id");
+```
+### Get recipients for a domain
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const queryParams: MessageQueryParams = {
+  limit: 10, // Default 25.Min 10, Max 50
+  page: 2
+}
+// Query params are not required
+const recipients = await mailerSend.domain.recipients("your_domain_id", queryParams);
 ```

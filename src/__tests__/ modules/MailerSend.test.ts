@@ -2,6 +2,7 @@ import { MailerSend } from "../../modules/MailerSend.module";
 import { Message } from "../../modules/Message.module";
 import { Activity } from "../../modules/Activity.module";
 import { Email } from "../../modules/Email.module";
+import { Domain } from "../../modules/Domain.module";
 
 describe("Mailer Send module", () => {
   it("Constructor", () => {
@@ -9,5 +10,6 @@ describe("Mailer Send module", () => {
     expect(mailerSend.activity instanceof Activity).toBe(true);
     expect(mailerSend.email instanceof Email).toBe(true);
     expect(mailerSend.message instanceof Message).toBe(true);
+    expect(mailerSend.domain instanceof Domain).toBe(true);
   });
 });
