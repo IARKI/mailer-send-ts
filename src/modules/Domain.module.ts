@@ -21,9 +21,7 @@ export class Domain extends RequestService {
 }
 
 export interface DomainQueryParams extends Pagination {
-  verified?: boolean
+  verified?: boolean;
 }
 
-export interface DomainRecipientsQueryParams extends Pagination {
-
-}
+export interface DomainRecipientsQueryParams extends Pagination {} // tslint:disable-line

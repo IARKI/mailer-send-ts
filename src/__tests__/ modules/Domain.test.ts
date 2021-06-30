@@ -1,4 +1,3 @@
-import { Message } from "../../modules/Message.module";
 import * as nock from "nock";
 import { Domain } from "../../modules/Domain.module";
 
@@ -6,10 +5,7 @@ describe("Message Module", () => {
   const domainModule = new Domain("test_key", "http://test.com");
   it("list", async () => {
     const params = { limit: 20, page: 2, verified: true };
-    nock("http://test.com")
-      .get("/domains")
-      .query(params)
-      .reply(200, { key1: "key1_value" }, { header1: "test" });
+    nock("http://test.com").get("/domains").query(params).reply(200, { key1: "key1_value" }, { header1: "test" });
     const getDomains = await domainModule.list(params);
     expect(getDomains.headers).toMatchObject({ header1: "test", "content-type": "application/json" });
     expect(getDomains.body).toMatchObject({ key1: "key1_value" });
