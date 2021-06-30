@@ -2,7 +2,7 @@ import { RequestService } from "../services/request.service";
 import { APIResponse } from "./MailerSend.module";
 import { Pagination } from "../models";
 
-export class Activity extends RequestService {
+export class ActivityModule extends RequestService {
   constructor(apiKey: string, baseUrl: string) {
     super(apiKey, baseUrl);
   }

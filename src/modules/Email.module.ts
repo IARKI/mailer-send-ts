@@ -2,7 +2,7 @@ import { EmailParams } from "../models";
 import { RequestService } from "../services/request.service";
 import { APIResponse } from "./MailerSend.module";
 
-export class Email extends RequestService {
+export class EmailModule extends RequestService {
   constructor(apiKey: string, baseUrl: string) {
     super(apiKey, baseUrl);
   }

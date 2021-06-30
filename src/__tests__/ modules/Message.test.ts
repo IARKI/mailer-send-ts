@@ -1,8 +1,8 @@
 import * as nock from "nock";
-import { Message } from "../../modules/Message.module";
+import { MessageModule } from "../../modules/Message.module";
 
 describe("Message Module", () => {
-  const messageModule = new Message("test_key", "http://test.com");
+  const messageModule = new MessageModule("test_key", "http://test.com");
   it("list", async () => {
     nock("http://test.com")
       .get("/messages")

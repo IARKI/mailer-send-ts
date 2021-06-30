@@ -11,31 +11,36 @@ export class RequestService {
   }
 
   protected async post(path: string, data: any): Promise<APIResponse> {
-    try {
-      const requestParams = {
-        headers: { Authorization: `Bearer ${this.apiKey}` },
-        json: data,
-        responseType: "json" as any,
-      };
-      const { headers, body, statusCode } = await got.post(`${this.baseUrl}${path}`, requestParams);
-      return { headers, body, statusCode };
-    } catch (e) {
-      if (e?.response) {
-        throw { headers: e.response.headers, body: e.response.body, statusCode: e.response.statusCode };
-      } else {
-        throw e;
-      }
-    }
+    return this.request("POST", path, data);
   }
 
   protected async get(path: string, queryParams?: any): Promise<APIResponse> {
+    return this.request("GET", path, null, queryParams);
+  }
+
+  protected async deleteReq(path: string): Promise<APIResponse> {
+    return this.request("DELETE", path);
+  }
+
+  protected async put(path: string, data: any): Promise<APIResponse> {
+    return this.request("PUT", path, data);
+  }
+
+  private async request(method: "POST" | "GET" | "DELETE" | "PUT", path: string, data?: any, queryParams?: any) {
     try {
       const requestParams = {
+        method,
         headers: { Authorization: `Bearer ${this.apiKey}` },
-        searchParams: queryParams,
         responseType: "json" as any,
-      };
-      const { headers, body, statusCode } = await got.get(`${this.baseUrl}${path}`, requestParams);
+      } as any;
+
+      if (data) {
+        requestParams.json = data;
+      }
+      if (queryParams) {
+        requestParams.searchParams = queryParams;
+      }
+      const { headers, body, statusCode } = await got(`${this.baseUrl}${path}`, requestParams);
       return { headers, body, statusCode };
     } catch (e) {
       if (e?.response) {

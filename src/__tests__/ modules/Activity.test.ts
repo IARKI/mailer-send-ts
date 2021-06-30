@@ -1,8 +1,8 @@
 import * as nock from "nock";
-import { Activity } from "../../modules/Activity.module";
+import { ActivityModule } from "../../modules/Activity.module";
 
 describe("Activity Module", () => {
-  const activityModule = new Activity("test_key", "http://test.com");
+  const activityModule = new ActivityModule("test_key", "http://test.com");
   it("domain", async () => {
     nock("http://test.com")
       .get("/activity/test_id")

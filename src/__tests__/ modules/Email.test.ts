@@ -1,9 +1,9 @@
 import * as nock from "nock";
-import { Email } from "../../modules/Email.module";
+import { EmailModule } from "../../modules/Email.module";
 import { EmailParams, Recipient } from "../../models";
 
 describe("Email Module", () => {
-  const emailModule = new Email("test_key", "http://test.com");
+  const emailModule = new EmailModule("test_key", "http://test.com");
   it("domain", async () => {
     nock("http://test.com").post("/email").reply(202, { key1: "key1_value" }, { header1: "test" });
     const emailParams = new EmailParams()

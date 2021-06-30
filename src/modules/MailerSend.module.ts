@@ -1,22 +1,25 @@
-import { Email } from "./Email.module";
-import { Activity } from "./Activity.module";
-import { Message } from "./Message.module";
-import { Domain } from "./Domain.module";
+import { EmailModule } from "./Email.module";
+import { ActivityModule } from "./Activity.module";
+import { MessageModule } from "./Message.module";
+import { DomainModule } from "./Domain.module";
+import { RecipientModule } from "./Recipient.module";
 
 export class MailerSend {
   private readonly apiKey: string;
   private baseUrl: string = "https://api.mailersend.com/v1";
-  email: Email;
-  activity: Activity;
-  message: Message;
-  domain: Domain;
+  email: EmailModule;
+  activity: ActivityModule;
+  message: MessageModule;
+  domain: DomainModule;
+  recipient: RecipientModule;
 
   constructor(config: MailerSendConfig) {
     this.apiKey = config.apiKey;
-    this.activity = new Activity(config.apiKey, this.baseUrl);
-    this.email = new Email(config.apiKey, this.baseUrl);
-    this.message = new Message(config.apiKey, this.baseUrl);
-    this.domain = new Domain(config.apiKey, this.baseUrl);
+    this.activity = new ActivityModule(config.apiKey, this.baseUrl);
+    this.email = new EmailModule(config.apiKey, this.baseUrl);
+    this.message = new MessageModule(config.apiKey, this.baseUrl);
+    this.domain = new DomainModule(config.apiKey, this.baseUrl);
+    this.recipient = new RecipientModule(config.apiKey, this.baseUrl);
   }
 }
 
