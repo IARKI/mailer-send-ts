@@ -46,5 +46,6 @@
   },
   "dependencies": {
     "got": "^11.8.2"
-  }
+  },
+  "keywords": ["mailersend", "typescript", "mailer-send", "types"]
 }
