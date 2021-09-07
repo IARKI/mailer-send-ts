@@ -6,3 +6,4 @@ export * from "./Message";
 export * from "./Pagination";
 export * from "./Recipient";
 export * from "./Sender";
+export * from "./Token";

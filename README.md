@@ -436,3 +436,40 @@ const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 
 const response = await mailerSend.recipient.delete("your_recipient_id");
 ```
+
+## Tokens
+<a href="https://developers.mailersend.com/api/v1/tokens.html">API Documentation</a>
+
+
+### Create a token
+
+```typescript
+import { MailerSend, Token, TokenScopeType } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const token = new Token("token_name", "domain_id", [TokenScopeType.EMAIL_FULL, TokenScopeType.WEBHOOKS_FULL, ...scopes])
+
+const response = await mailerSend.token.create(token);
+```
+
+### Update a token
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const response = await mailerSend.token.updateSettings("your_token_id", {status: "pause"});
+```
+
+
+### Delete a token
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const response = await mailerSend.token.delete("your_token_id");
+```

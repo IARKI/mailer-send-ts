@@ -3,6 +3,7 @@ import { ActivityModule } from "./Activity.module";
 import { MessageModule } from "./Message.module";
 import { DomainModule } from "./Domain.module";
 import { RecipientModule } from "./Recipient.module";
+import { TokenModule } from "./Token.module";
 
 export class MailerSend {
   private readonly apiKey: string;
@@ -12,6 +13,7 @@ export class MailerSend {
   message: MessageModule;
   domain: DomainModule;
   recipient: RecipientModule;
+  token: TokenModule;
 
   constructor(config: MailerSendConfig) {
     this.apiKey = config.apiKey;
@@ -20,6 +22,7 @@ export class MailerSend {
     this.message = new MessageModule(config.apiKey, this.baseUrl);
     this.domain = new DomainModule(config.apiKey, this.baseUrl);
     this.recipient = new RecipientModule(config.apiKey, this.baseUrl);
+    this.token = new TokenModule(config.apiKey, this.baseUrl);
   }
 }
 
