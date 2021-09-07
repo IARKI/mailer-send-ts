@@ -1,8 +1,24 @@
 import * as nock from "nock";
 import { DomainModule } from "../../modules/Domain.module";
+import { Domain } from "../../models";
 
 describe("Domain Module", () => {
   const domainModule = new DomainModule("test_key", "http://test.com");
+  it("create", async () => {
+    const domain = new Domain("mydomain.com", "rp_subdomain", "ct_subdomain", "ir_subdomain");
+    nock("http://test.com").post("/domains").reply(
+      200,
+      {
+        id: "dle1krod2jvn8gwm",
+        name: "mydomain.com",
+      },
+      { header1: "test" },
+    );
+    const createDomain = await domainModule.create(domain);
+    expect(createDomain.headers).toMatchObject({ header1: "test", "content-type": "application/json" });
+    expect(createDomain.body).toMatchObject({ id: "dle1krod2jvn8gwm", name: "mydomain.com" });
+    expect(createDomain.statusCode).toBe(200);
+  });
   it("list", async () => {
     const params = { limit: 20, page: 2, verified: true };
     nock("http://test.com").get("/domains").query(params).reply(200, { key1: "key1_value" }, { header1: "test" });

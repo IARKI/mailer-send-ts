@@ -1,10 +1,14 @@
 import { RequestService } from "../services/request.service";
 import { APIResponse } from "./MailerSend.module";
-import { DomainQueryParams, DomainRecipientsQueryParams, DomainSettings } from "../models";
+import { Domain, DomainQueryParams, DomainRecipientsQueryParams, DomainSettings } from "../models";
 
 export class DomainModule extends RequestService {
   constructor(apiKey: string, baseUrl: string) {
     super(apiKey, baseUrl);
+  }
+
+  async create(domain: Domain) {
+    return await this.post(`/domains`, domain);
   }
 
   async list(queryParams?: DomainQueryParams): Promise<APIResponse> {

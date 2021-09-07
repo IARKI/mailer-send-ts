@@ -25,7 +25,7 @@
 
 - [X] Get a list of domains
 - [X] Get a single domain
-- [ ] Add domain
+- [X] Add domain
 - [X] Delete a domain
 - [X] Get recipients for a domain
 - [X] Update domain settings
@@ -321,6 +321,18 @@ const message = await mailerSend.message.single("your_message_id");
 ## Domains
 
 <a href="https://developers.mailersend.com/api/v1/domains.html">API Documentation</a>
+
+### Create domain
+
+```typescript
+import { MailerSend, Domain } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const domain = new Domain("mydomain.com", "rp_subdomain", "ct_subdomain", "ir_subdomain");
+
+const response = await mailerSend.domain.create(domain);
+```
 
 ### Get a list of domains
 
