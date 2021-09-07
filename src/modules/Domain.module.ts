@@ -1,6 +1,6 @@
 import { RequestService } from "../services/request.service";
 import { APIResponse } from "./MailerSend.module";
-import { Pagination } from "../models";
+import { DomainQueryParams, DomainRecipientsQueryParams, DomainSettings } from "../models";
 
 export class DomainModule extends RequestService {
   constructor(apiKey: string, baseUrl: string) {
@@ -27,24 +27,3 @@ export class DomainModule extends RequestService {
     return await this.get(`/domains/${domainId}/recipients`, queryParams);
   }
 }
-
-export interface DomainQueryParams extends Pagination {
-  verified?: boolean;
-}
-
-export interface DomainRecipientsQueryParams extends Pagination {} // tslint:disable-line
-
-// tslint:disable
-export interface DomainSettings {
-  send_paused?: boolean;
-  track_clicks?: boolean;
-  track_opens?: boolean;
-  track_unsubscribe?: boolean;
-  track_unsubscribe_html?: string;
-  track_unsubscribe_plain?: string;
-  track_content?: boolean;
-  custom_tracking_enabled?: boolean;
-  custom_tracking_subdomain?: string;
-}
-
-// tslint:enable

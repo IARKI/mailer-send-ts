@@ -1,6 +1,6 @@
 import { RequestService } from "../services/request.service";
 import { APIResponse } from "./MailerSend.module";
-import { Pagination } from "../models";
+import { RecipientsQueryParams } from "../models";
 
 export class RecipientModule extends RequestService {
   constructor(apiKey: string, baseUrl: string) {
@@ -18,8 +18,4 @@ export class RecipientModule extends RequestService {
   async delete(recipientId: string): Promise<APIResponse> {
     return await this.deleteReq(`/recipients/${recipientId}`);
   }
-}
-
-export interface RecipientsQueryParams extends Pagination {
-  domain_id?: string; // tslint:disable-line
 }

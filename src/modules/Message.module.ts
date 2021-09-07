@@ -1,6 +1,6 @@
 import { RequestService } from "../services/request.service";
 import { APIResponse } from "./MailerSend.module";
-import { Pagination } from "../models";
+import { MessageQueryParams } from "../models";
 
 export class MessageModule extends RequestService {
   constructor(apiKey: string, baseUrl: string) {
@@ -16,4 +16,4 @@ export class MessageModule extends RequestService {
   }
 }
 
-export interface MessageQueryParams extends Pagination {} // tslint:disable-line
+

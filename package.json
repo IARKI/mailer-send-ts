@@ -14,7 +14,7 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "test": "jest --config jestconfig.json",
+    "test": "jest --config jestconfig.json --coverage",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
@@ -47,5 +47,11 @@
   "dependencies": {
     "got": "^11.8.2"
   },
-  "keywords": ["mailersend", "typescript", "mailer-send", "types"]
+  "keywords": [
+    "mailersend",
+    "typescript",
+    "mailer-send",
+    "types",
+    "email"
+  ]
 }

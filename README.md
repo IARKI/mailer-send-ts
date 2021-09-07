@@ -25,9 +25,12 @@
 
 - [X] Get a list of domains
 - [X] Get a single domain
+- [ ] Add domain
 - [X] Delete a domain
 - [X] Get recipients for a domain
 - [X] Update domain settings
+- [ ] Get DNS Records
+- [ ] Verify Domain
 
 ### Email
 
@@ -43,19 +46,29 @@
 - [X] Get recipients
 - [X] Get a single recipient
 - [X] Delete a recipient
+- [ ] Get recipients from a suppression list
+- [ ] Add recipients to a suppression list
+- [ ] Delete recipients from a suppression list
+
+### Templates
+ - [ ] Get templates
+ - [ ] Get a single template
+ - [ ] Delete a template
 
 ### Tokens
 
-- [ ] Create a token
-- [ ] Update a token
-- [ ] Delete a token
+- [X] Create a token
+- [X] Update a token
+- [X] Delete a token
 
 ### Webhooks
 
+- [ ] Webhooks overview
 - [ ] List webhooks
 - [ ] Get a webhook
 - [ ] Create a webhook
 - [ ] Update a webhook
+- [ ] Delete a webhook
 
 # Installation
 
@@ -100,7 +113,7 @@ const emailParams = new EmailParams()
   .setText("Hello world!")
   .setHtml("<b>Hello world!</b>");
 
-mailerSend.email.send(emailParams);
+const response = await mailerSend.email.send(emailParams);
 ```
 
 ### Add CC, BCC recipients
@@ -131,7 +144,7 @@ const emailParams = new EmailParams()
   .setText("Hello world!")
   .setHtml("<b>Hello world!</b>");
 
-mailerSend.email.send(emailParams);
+const response = await mailerSend.email.send(emailParams);
 ```
 
 ### Send a template-based email
@@ -153,7 +166,7 @@ const emailParams = new EmailParams()
   .setSubject("Your subject")
   .setTemplateId("your_template_id");
 
-mailerSend.email.send(emailParams);
+const response = await mailerSend.email.send(emailParams);
 ```
 
 ### Advanced personalization
@@ -185,7 +198,7 @@ const emailParams = new EmailParams()
   .setText("This is the text content, {{ test }}")
   .setHtml("This is the HTML content, {{ test }}");
 
-mailerSend.email.send(emailParams);
+const response = await mailerSend.email.send(emailParams);
 ```
 
 ### Simple personalization
@@ -220,14 +233,14 @@ const emailParams = new EmailParams()
   .setHtml("This is the HTML content, {$test}")
   .setText("This is the text content, {$test}");
 
-mailerSend.email.send(emailParams);
+const response = await mailerSend.email.send(emailParams);
 ```
 
 ### Send email with attachment
 
 ```typescript
 const fs = require('fs');
-import { MailerSend, EmailParams, Sender, Recipient } from "mailer-send-ts";
+import { MailerSend, EmailParams, Sender, Recipient, Attachment } from "mailer-send-ts";
 
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 
@@ -259,10 +272,10 @@ mailerSend.email.send(emailParams);
 ### Get a list of activities
 
 ```typescript
-import { MailerSend } from "mailer-send-ts";
-import { ActivityEventType, ActivityQueryParams } from "./Activity.module";
+import { ActivityEventType, ActivityQueryParams, MailerSend } from "mailer-send-ts";
 
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
 const queryParams: ActivityQueryParams = {
   limit: 10, // Default 25.Min 10, Max 50
   page: 2,
@@ -270,6 +283,7 @@ const queryParams: ActivityQueryParams = {
   date_to: 1443651141, // Format: 1443651141
   event: [ActivityEventType.SENT, ActivityEventType.SOFT_BOUNCED, ...]
 }
+
 // Query params are not required
 const activities = await mailerSend.activity.domain("your_domain_id", queryParams);
 ```
@@ -281,14 +295,15 @@ const activities = await mailerSend.activity.domain("your_domain_id", queryParam
 ### Get a list of messages
 
 ```typescript
-import { MailerSend } from "mailer-send-ts";
-import { MessageQueryParams } from "./Message.module";
+import { MailerSend, MessageQueryParams } from "mailer-send-ts";
 
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
 const queryParams: MessageQueryParams = {
   limit: 10, // Default 25.Min 10, Max 50
   page: 2
 }
+
 // Query params are not required
 const messages = await mailerSend.message.list(queryParams);
 ```
@@ -310,10 +325,11 @@ const message = await mailerSend.message.single("your_message_id");
 ### Get a list of domains
 
 ```typescript
-import { MailerSend } from "mailer-send-ts";
+import { MailerSend, DomainQueryParams } from "mailer-send-ts";
 
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
-const queryParams: MessageQueryParams = {
+
+const queryParams: DomainQueryParams = {
   limit: 10, // Default 25.Min 10, Max 50
   page: 2,
   verified: true // Not required
@@ -335,14 +351,15 @@ const domain = await mailerSend.domain.single("your_domain_id");
 ### Get recipients for a domain
 
 ```typescript
-import { MailerSend } from "mailer-send-ts";
+import { MailerSend, DomainRecipientsQueryParams } from "mailer-send-ts";
 
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 
-const queryParams: MessageQueryParams = {
+const queryParams: DomainRecipientsQueryParams = {
   limit: 10, // Default 25.Min 10, Max 50
   page: 2
 }
+
 // Query params are not required
 const recipients = await mailerSend.domain.recipients("your_domain_id", queryParams);
 ```
@@ -360,11 +377,11 @@ const response = await mailerSend.domain.delete("your_domain_id");
 ### Update domain settings
 
 ```typescript
-import { MailerSend } from "mailer-send-ts";
+import { MailerSend, DomainSettings } from "mailer-send-ts";
 
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 
-const domainUpdates = {
+const domainUpdates: DomainSettings = {
   send_paused: true,
   track_clicks: true,
   track_opens: true,
@@ -383,18 +400,19 @@ const response = await mailerSend.domain.updateSettings("your_domain_id", domain
 
 <a href="https://developers.mailersend.com/api/v1/recipients.html">API Documentation</a>
 
-### Get recipients for a domain
+### Get recipients
 
 ```typescript
-import { MailerSend } from "mailer-send-ts";
+import { MailerSend, RecipientsQueryParams } from "mailer-send-ts";
 
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 
-const queryParams: MessageQueryParams = {
+const queryParams: RecipientsQueryParams = {
   limit: 10, // Default 25.Min 10, Max 50
   page: 2,
   domain_id: "your_domain_id" // not required
 }
+
 // Query params are not required
 const recipients = await mailerSend.recipient.list(queryParams);
 ```
