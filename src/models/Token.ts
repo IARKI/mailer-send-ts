@@ -1,6 +1,6 @@
 export class Token {
   name: string;
-  domain_id: string;
+  domain_id: string; // tslint:disable-line
   scopes: TokenScopeType[];
 
   constructor(name: string, domainId: string, scopes: TokenScopeType[]) {
@@ -19,5 +19,5 @@ export enum TokenScopeType {
   ANALYTICS_FULL = "analytics_full",
   TOKENS_FULL = "tokens_full",
   WEBHOOKS_FULL = "webhooks_full",
-  TEMPLATES_FULL = "templates_full"
+  TEMPLATES_FULL = "templates_full",
 }

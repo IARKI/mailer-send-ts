@@ -15,5 +15,3 @@ export class MessageModule extends RequestService {
     return await this.get(`/messages/${messageId}`);
   }
 }
-
-

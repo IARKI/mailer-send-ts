@@ -49,7 +49,7 @@ describe("EmailParams Model", () => {
       .setSubject("Some subject")
       .setText("Some text")
       .setHtml("<b>Some html</b>")
-      .setAttachments([{ content: "base64", fileName: "name" }])
+      .setAttachments([{ content: "base64", filename: "name" }])
       .setTemplateId("some_template_id")
       .setTags(["tag1", "tag2"])
       .setVariables([{ email: "to@email.com", substitutions: [{ var: "var_1", value: "value_1" }] }])
