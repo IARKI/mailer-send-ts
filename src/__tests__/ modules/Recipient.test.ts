@@ -94,4 +94,18 @@ describe("Recipient Module", () => {
     expect(spamComplaintsList.body).toMatchObject({ data: [{ id: "id_here" }] });
     expect(spamComplaintsList.statusCode).toBe(200);
   });
+  it("unsubscribes list", async () => {
+    const params = { limit: 20, page: 2, domain_id: "domain_id" };
+    nock("http://test.com")
+      .get("/suppressions/unsubscribes")
+      .query(params)
+      .reply(200, { data: [{ id: "id_here" }] }, { header1: "unsubscribes-header" });
+    const spamComplaintsList = await recipientModule.unsubscribesList(params);
+    expect(spamComplaintsList.headers).toMatchObject({
+      header1: "unsubscribes-header",
+      "content-type": "application/json",
+    });
+    expect(spamComplaintsList.body).toMatchObject({ data: [{ id: "id_here" }] });
+    expect(spamComplaintsList.statusCode).toBe(200);
+  });
 });

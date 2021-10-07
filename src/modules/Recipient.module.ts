@@ -19,26 +19,31 @@ export class RecipientModule extends RequestService {
     return await this.deleteReq(`/recipients/${recipientId}`);
   }
 
-  async blockList(queryParams?: RecipientsQueryParams) {
+  async blockList(queryParams?: RecipientsQueryParams): Promise<APIResponse> {
     return await this.get(`/suppressions/blocklist`, queryParams);
   }
 
-  async blockRecipients(blockRecipients: BlockListRecipients) {
+  async blockRecipients(blockRecipients: BlockListRecipients): Promise<APIResponse> {
     return await this.post<BlockListRecipients>(`/suppressions/blocklist`, blockRecipients);
   }
 
-  async delBlockListRecipients(ids: string[]) {
+  async delBlockListRecipients(ids: string[]): Promise<APIResponse> {
     return await this.deleteReq<{ ids: string[] }>(`/suppressions/blocklist`, { ids });
   }
 
-  async delAllBlockListRecipients() {
+  async delAllBlockListRecipients(): Promise<APIResponse> {
     return await this.deleteReq<{ all: boolean }>(`/suppressions/blocklist`, { all: true });
   }
 
-  async hardBounceList(queryParams?: RecipientsQueryParams) {
+  async hardBounceList(queryParams?: RecipientsQueryParams): Promise<APIResponse> {
     return await this.get(`/suppressions/hard-bounces`, queryParams);
   }
-  async spamComplaintsList(queryParams?: RecipientsQueryParams) {
+
+  async spamComplaintsList(queryParams?: RecipientsQueryParams): Promise<APIResponse> {
     return await this.get(`/suppressions/spam-complaints`, queryParams);
+  }
+
+  async unsubscribesList(queryParams?: RecipientsQueryParams): Promise<APIResponse> {
+    return await this.get(`/suppressions/unsubscribes`, queryParams);
   }
 }

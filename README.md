@@ -51,6 +51,7 @@
 - [X] Delete recipients from a suppression list
 - [X] Hard Bounces
 - [X] Spam Complaints
+- [X] Unsubscribes
 
 ### Templates
  - [ ] Get templates
