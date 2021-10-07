@@ -10,7 +10,7 @@ export class RequestService {
     this.baseUrl = baseUrl;
   }
 
-  protected async post(path: string, data: any): Promise<APIResponse> {
+  protected async post<T>(path: string, data: T): Promise<APIResponse> {
     return this.request("POST", path, data);
   }
 

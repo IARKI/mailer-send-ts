@@ -8,7 +8,7 @@ export class TokenModule extends RequestService {
   }
 
   async create(token: Token): Promise<APIResponse> {
-    return await this.post("/token", token);
+    return await this.post<Token>("/token", token);
   }
 
   async updateSettings(tokenId: string, updates: TokenUpdates): Promise<APIResponse> {

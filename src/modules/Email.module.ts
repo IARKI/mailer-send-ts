@@ -8,7 +8,7 @@ export class EmailModule extends RequestService {
   }
 
   async send(params: EmailParams): Promise<APIResponse> {
-    return await this.post("/email", params);
+    return await this.post<EmailParams>("/email", params);
   }
 }
 

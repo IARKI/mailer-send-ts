@@ -8,7 +8,7 @@ export class DomainModule extends RequestService {
   }
 
   async create(domain: Domain) {
-    return await this.post(`/domains`, domain);
+    return await this.post<Domain>(`/domains`, domain);
   }
 
   async list(queryParams?: DomainQueryParams): Promise<APIResponse> {
