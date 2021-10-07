@@ -29,8 +29,8 @@
 - [X] Delete a domain
 - [X] Get recipients for a domain
 - [X] Update domain settings
-- [ ] Get DNS Records
-- [ ] Verify Domain
+- [X] Get DNS Records
+- [X] Verify Domain
 
 ### Email
 
@@ -406,6 +406,25 @@ const domainUpdates: DomainSettings = {
 }
 
 const response = await mailerSend.domain.updateSettings("your_domain_id", domainUpdates);
+```
+### Get DNS Records
+
+```typescript
+import { MailerSend, DomainSettings } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const dns = await mailerSend.domain.dns("your_domain_id");
+```
+
+### Verify a domain
+
+```typescript
+import { MailerSend, DomainSettings } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const dns = await mailerSend.domain.dns("your_domain_id");
 ```
 
 ## Recipients

@@ -63,4 +63,18 @@ describe("Domain Module", () => {
     expect(deleteDomain.body).toMatchObject({ key1: "key1_value" });
     expect(deleteDomain.statusCode).toBe(200);
   });
+  it("dns", async () => {
+    nock("http://test.com").get("/domains/test_id/dns-records").reply(200, { key1: "dns" }, { header1: "dns-header" });
+    const getDNS = await domainModule.dns("test_id");
+    expect(getDNS.headers).toMatchObject({ header1: "dns-header", "content-type": "application/json" });
+    expect(getDNS.body).toMatchObject({ key1: "dns" });
+    expect(getDNS.statusCode).toBe(200);
+  });
+  it("verify", async () => {
+    nock("http://test.com").get("/domains/test_id/verify").reply(200, { key1: "verify" }, { header1: "verify-header" });
+    const verifyDomain = await domainModule.verify("test_id");
+    expect(verifyDomain.headers).toMatchObject({ header1: "verify-header", "content-type": "application/json" });
+    expect(verifyDomain.body).toMatchObject({ key1: "verify" });
+    expect(verifyDomain.statusCode).toBe(200);
+  });
 });

@@ -30,4 +30,12 @@ export class DomainModule extends RequestService {
   async recipients(domainId: string, queryParams?: DomainRecipientsQueryParams): Promise<APIResponse> {
     return await this.get(`/domains/${domainId}/recipients`, queryParams);
   }
+
+  async dns(domainId: string): Promise<APIResponse> {
+    return await this.get(`/domains/${domainId}/dns-records`);
+  }
+
+  async verify(domainId: string): Promise<APIResponse> {
+    return await this.get(`/domains/${domainId}/verify`);
+  }
 }

@@ -42,7 +42,7 @@ export class RequestService {
       }
       const { headers, body, statusCode } = await got(`${this.baseUrl}${path}`, requestParams);
       return { headers, body, statusCode };
-    } catch (e) {
+    } catch (e: any) {
       if (e?.response) {
         throw { headers: e.response.headers, body: e.response.body, statusCode: e.response.statusCode };
       } else {
