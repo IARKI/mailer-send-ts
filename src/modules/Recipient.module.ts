@@ -18,4 +18,8 @@ export class RecipientModule extends RequestService {
   async delete(recipientId: string): Promise<APIResponse> {
     return await this.deleteReq(`/recipients/${recipientId}`);
   }
+
+  async blockList(queryParams?: RecipientsQueryParams) {
+    return await this.get(`/suppressions/blocklist`, queryParams);
+  }
 }

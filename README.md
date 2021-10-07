@@ -46,7 +46,7 @@
 - [X] Get recipients
 - [X] Get a single recipient
 - [X] Delete a recipient
-- [ ] Get recipients from a suppression list
+- [X] Get recipients from a suppression list
 - [ ] Add recipients to a suppression list
 - [ ] Delete recipients from a suppression list
 
@@ -466,6 +466,22 @@ import { MailerSend } from "mailer-send-ts";
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 
 const response = await mailerSend.recipient.delete("your_recipient_id");
+```
+
+### Get recipients from a suppression list
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const queryParams: RecipientsQueryParams = {
+  limit: 10, // Default 25.Min 10, Max 50
+  page: 2,
+  domain_id: "your_domain_id" // not required
+}
+// Query params are not required
+const blockList = await mailerSend.recipient.blockList(queryParams);
 ```
 
 ## Tokens

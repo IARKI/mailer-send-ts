@@ -25,4 +25,15 @@ describe("Recipient Module", () => {
     expect(deleteRecipient.body).toMatchObject({ key1: "key1_value" });
     expect(deleteRecipient.statusCode).toBe(200);
   });
+  it("block list", async () => {
+    const params = { limit: 20, page: 2, domain_id: "domain_id" };
+    nock("http://test.com")
+      .get("/suppressions/blocklist")
+      .query(params)
+      .reply(200, { data: [{ id: "id_here" }] }, { header1: "blocklist-header" });
+    const deleteRecipient = await recipientModule.blockList(params);
+    expect(deleteRecipient.headers).toMatchObject({ header1: "blocklist-header", "content-type": "application/json" });
+    expect(deleteRecipient.body).toMatchObject({ data: [{ id: "id_here" }] });
+    expect(deleteRecipient.statusCode).toBe(200);
+  });
 });
