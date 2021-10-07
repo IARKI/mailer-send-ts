@@ -49,6 +49,7 @@
 - [X] Get recipients from a suppression list
 - [X] Add recipients to a suppression list
 - [X] Delete recipients from a suppression list
+- [X] Hard Bounces
 
 ### Templates
  - [ ] Get templates
@@ -520,6 +521,22 @@ import { MailerSend } from "mailer-send-ts";
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 
 const removed = await mailerSend.recipient.delAllBlockListRecipients();
+```
+
+### Get hard bounced recipients
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const queryParams: RecipientsQueryParams = {
+  limit: 10, // Default 25.Min 10, Max 50
+  page: 2,
+  domain_id: "your_domain_id" // not required
+};
+// Query params are not required
+const hardBounceList = await mailerSend.recipient.hardBounceList(queryParams);
 ```
 
 ## Tokens

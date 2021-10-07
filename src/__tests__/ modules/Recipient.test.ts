@@ -66,4 +66,18 @@ describe("Recipient Module", () => {
     expect(removed.body).toMatchObject({});
     expect(removed.statusCode).toBe(200);
   });
+  it("hard bounce list", async () => {
+    const params = { limit: 20, page: 2, domain_id: "domain_id" };
+    nock("http://test.com")
+      .get("/suppressions/hard-bounces")
+      .query(params)
+      .reply(200, { data: [{ id: "id_here" }] }, { header1: "hard-bounces-header" });
+    const hardBouncedList = await recipientModule.hardBounceList(params);
+    expect(hardBouncedList.headers).toMatchObject({
+      header1: "hard-bounces-header",
+      "content-type": "application/json",
+    });
+    expect(hardBouncedList.body).toMatchObject({ data: [{ id: "id_here" }] });
+    expect(hardBouncedList.statusCode).toBe(200);
+  });
 });

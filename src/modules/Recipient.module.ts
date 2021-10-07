@@ -34,4 +34,8 @@ export class RecipientModule extends RequestService {
   async delAllBlockListRecipients() {
     return await this.deleteReq<{ all: boolean }>(`/suppressions/blocklist`, { all: true });
   }
+
+  async hardBounceList(queryParams?: RecipientsQueryParams) {
+    return await this.get(`/suppressions/hard-bounces`, queryParams);
+  }
 }
