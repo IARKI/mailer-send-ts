@@ -80,4 +80,18 @@ describe("Recipient Module", () => {
     expect(hardBouncedList.body).toMatchObject({ data: [{ id: "id_here" }] });
     expect(hardBouncedList.statusCode).toBe(200);
   });
+  it("spam complaints list", async () => {
+    const params = { limit: 20, page: 2, domain_id: "domain_id" };
+    nock("http://test.com")
+      .get("/suppressions/spam-complaints")
+      .query(params)
+      .reply(200, { data: [{ id: "id_here" }] }, { header1: "spam-complaints-header" });
+    const spamComplaintsList = await recipientModule.spamComplaintsList(params);
+    expect(spamComplaintsList.headers).toMatchObject({
+      header1: "spam-complaints-header",
+      "content-type": "application/json",
+    });
+    expect(spamComplaintsList.body).toMatchObject({ data: [{ id: "id_here" }] });
+    expect(spamComplaintsList.statusCode).toBe(200);
+  });
 });

@@ -50,6 +50,7 @@
 - [X] Add recipients to a suppression list
 - [X] Delete recipients from a suppression list
 - [X] Hard Bounces
+- [X] Spam Complaints
 
 ### Templates
  - [ ] Get templates
@@ -537,6 +538,23 @@ const queryParams: RecipientsQueryParams = {
 };
 // Query params are not required
 const hardBounceList = await mailerSend.recipient.hardBounceList(queryParams);
+```
+
+### Get recipients who have spam complained
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const queryParams: RecipientsQueryParams = {
+  limit: 10, // Default 25.Min 10, Max 50
+  page: 2,
+  domain_id: "your_domain_id" // not required
+};
+
+// Query params are not required
+const spamComplaintsList = await mailerSend.recipient.spamComplaintsList(queryParams);
 ```
 
 ## Tokens

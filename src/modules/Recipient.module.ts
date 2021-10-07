@@ -38,4 +38,7 @@ export class RecipientModule extends RequestService {
   async hardBounceList(queryParams?: RecipientsQueryParams) {
     return await this.get(`/suppressions/hard-bounces`, queryParams);
   }
+  async spamComplaintsList(queryParams?: RecipientsQueryParams) {
+    return await this.get(`/suppressions/spam-complaints`, queryParams);
+  }
 }
