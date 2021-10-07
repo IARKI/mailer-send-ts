@@ -9,3 +9,9 @@ export class Recipient extends Sender {
 export interface RecipientsQueryParams extends Pagination {
   domain_id?: string; // tslint:disable-line
 }
+
+export interface BlockListRecipients {
+  domain_id?: string;
+  recipients?: string[];
+  patterns?: string[];
+}

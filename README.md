@@ -47,7 +47,7 @@
 - [X] Get a single recipient
 - [X] Delete a recipient
 - [X] Get recipients from a suppression list
-- [ ] Add recipients to a suppression list
+- [X] Add recipients to a suppression list
 - [ ] Delete recipients from a suppression list
 
 ### Templates
@@ -483,6 +483,24 @@ const queryParams: RecipientsQueryParams = {
 // Query params are not required
 const blockList = await mailerSend.recipient.blockList(queryParams);
 ```
+
+### Add recipients to a suppression list
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const recipient: BlockListRecipient = {
+  domain_id: "83gwk2j7zqz1nxyd", // not required
+  recipients: ["test@example.com"], // If patterns is not defined, this property is required.
+  patterns: [".*@example.com"] // If recipients is not defined, this property is required.
+};
+
+const blocked = await mailerSend.recipient.blockRecipient(recipient);
+```
+
+
 
 ## Tokens
 <a href="https://developers.mailersend.com/api/v1/tokens.html">API Documentation</a>

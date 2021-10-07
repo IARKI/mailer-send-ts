@@ -1,5 +1,6 @@
 import * as nock from "nock";
 import { RecipientModule } from "../../modules/Recipient.module";
+import { BlockListRecipients } from "../../models";
 
 describe("Recipient Module", () => {
   const recipientModule = new RecipientModule("test_key", "http://test.com");
@@ -31,9 +32,23 @@ describe("Recipient Module", () => {
       .get("/suppressions/blocklist")
       .query(params)
       .reply(200, { data: [{ id: "id_here" }] }, { header1: "blocklist-header" });
-    const deleteRecipient = await recipientModule.blockList(params);
-    expect(deleteRecipient.headers).toMatchObject({ header1: "blocklist-header", "content-type": "application/json" });
-    expect(deleteRecipient.body).toMatchObject({ data: [{ id: "id_here" }] });
-    expect(deleteRecipient.statusCode).toBe(200);
+    const blockList = await recipientModule.blockList(params);
+    expect(blockList.headers).toMatchObject({ header1: "blocklist-header", "content-type": "application/json" });
+    expect(blockList.body).toMatchObject({ data: [{ id: "id_here" }] });
+    expect(blockList.statusCode).toBe(200);
+  });
+  it("block recipients", async () => {
+    const recipients: BlockListRecipients = {
+      domain_id: "83gwk2j7zqz1nxyd", // not required
+      recipients: ["test@example.com"], // If patterns is not defined, this property is required.
+      patterns: [".*@example.com"], // If recipients is not defined, this property is required.
+    };
+    nock("http://test.com")
+      .post("/suppressions/blocklist")
+      .reply(200, { data: [{ id: "block_id" }] }, { header1: "block-header" });
+    const blockedRecipient = await recipientModule.blockRecipients(recipients);
+    expect(blockedRecipient.headers).toMatchObject({ header1: "block-header", "content-type": "application/json" });
+    expect(blockedRecipient.body).toMatchObject({ data: [{ id: "block_id" }] });
+    expect(blockedRecipient.statusCode).toBe(200);
   });
 });

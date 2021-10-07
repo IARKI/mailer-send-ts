@@ -1,6 +1,6 @@
 import { RequestService } from "../services/request.service";
 import { APIResponse } from "./MailerSend.module";
-import { RecipientsQueryParams } from "../models";
+import { BlockListRecipients, RecipientsQueryParams } from "../models";
 
 export class RecipientModule extends RequestService {
   constructor(apiKey: string, baseUrl: string) {
@@ -21,5 +21,9 @@ export class RecipientModule extends RequestService {
 
   async blockList(queryParams?: RecipientsQueryParams) {
     return await this.get(`/suppressions/blocklist`, queryParams);
+  }
+
+  async blockRecipients(blockRecipients: BlockListRecipients) {
+    return await this.post<BlockListRecipients>(`/suppressions/blocklist`, blockRecipients);
   }
 }
