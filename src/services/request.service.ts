@@ -18,8 +18,8 @@ export class RequestService {
     return this.request("GET", path, null, queryParams);
   }
 
-  protected async deleteReq(path: string): Promise<APIResponse> {
-    return this.request("DELETE", path);
+  protected async deleteReq<T>(path: string, data?: T): Promise<APIResponse> {
+    return this.request("DELETE", path, data);
   }
 
   protected async put(path: string, data: any): Promise<APIResponse> {

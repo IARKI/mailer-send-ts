@@ -26,4 +26,12 @@ export class RecipientModule extends RequestService {
   async blockRecipients(blockRecipients: BlockListRecipients) {
     return await this.post<BlockListRecipients>(`/suppressions/blocklist`, blockRecipients);
   }
+
+  async delBlockListRecipients(ids: string[]) {
+    return await this.deleteReq<{ ids: string[] }>(`/suppressions/blocklist`, { ids });
+  }
+
+  async delAllBlockListRecipients() {
+    return await this.deleteReq<{ all: boolean }>(`/suppressions/blocklist`, { all: true });
+  }
 }

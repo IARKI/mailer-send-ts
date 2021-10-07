@@ -48,7 +48,7 @@
 - [X] Delete a recipient
 - [X] Get recipients from a suppression list
 - [X] Add recipients to a suppression list
-- [ ] Delete recipients from a suppression list
+- [X] Delete recipients from a suppression list
 
 ### Templates
  - [ ] Get templates
@@ -500,7 +500,27 @@ const recipient: BlockListRecipient = {
 const blocked = await mailerSend.recipient.blockRecipient(recipient);
 ```
 
+### Delete recipients from a suppression list
 
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+// To delete specific entries
+const ids = ["60f198790542d97fb66dfe52", "60f198790542d97fb66dfe53"]
+const removed = await mailerSend.recipient.delBlockListRecipients(ids);
+```
+
+### Delete all recipients from a suppression list
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const removed = await mailerSend.recipient.delAllBlockListRecipients();
+```
 
 ## Tokens
 <a href="https://developers.mailersend.com/api/v1/tokens.html">API Documentation</a>

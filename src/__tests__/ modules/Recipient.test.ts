@@ -51,4 +51,19 @@ describe("Recipient Module", () => {
     expect(blockedRecipient.body).toMatchObject({ data: [{ id: "block_id" }] });
     expect(blockedRecipient.statusCode).toBe(200);
   });
+  it("delete block recipients", async () => {
+    nock("http://test.com").delete("/suppressions/blocklist").reply(200, {}, { header1: "block-header" });
+    const ids = ["60f198790542d97fb66dfe52", "60f198790542d97fb66dfe53"];
+    const removed = await recipientModule.delBlockListRecipients(ids);
+    expect(removed.headers).toMatchObject({ header1: "block-header", "content-type": "application/json" });
+    expect(removed.body).toMatchObject({});
+    expect(removed.statusCode).toBe(200);
+  });
+  it("delete block recipients", async () => {
+    nock("http://test.com").delete("/suppressions/blocklist").reply(200, {}, { header1: "block-header" });
+    const removed = await recipientModule.delAllBlockListRecipients();
+    expect(removed.headers).toMatchObject({ header1: "block-header", "content-type": "application/json" });
+    expect(removed.body).toMatchObject({});
+    expect(removed.statusCode).toBe(200);
+  });
 });
