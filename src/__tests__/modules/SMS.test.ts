@@ -15,10 +15,7 @@ describe("SMS Module", () => {
 
     const params = new SMSParams()
       .setFrom("+19191234567")
-      .setTo([
-        "+19191234567",
-        "+19199876543"
-      ])
+      .setTo(["+19191234567", "+19199876543"])
       .setText("Hey {{name}}! This is just a friendly hello :D")
       .setPersonalization(personalization);
 
