@@ -4,6 +4,7 @@ import { MessageModule } from "./Message.module";
 import { DomainModule } from "./Domain.module";
 import { RecipientModule } from "./Recipient.module";
 import { TokenModule } from "./Token.module";
+import { SMSModule } from "./SMS.module";
 
 export class MailerSend {
   private readonly apiKey: string;
@@ -13,6 +14,7 @@ export class MailerSend {
   message: MessageModule;
   domain: DomainModule;
   recipient: RecipientModule;
+  sms: SMSModule;
   token: TokenModule;
 
   constructor(config: MailerSendConfig) {
@@ -23,6 +25,7 @@ export class MailerSend {
     this.domain = new DomainModule(config.apiKey, this.baseUrl);
     this.recipient = new RecipientModule(config.apiKey, this.baseUrl);
     this.token = new TokenModule(config.apiKey, this.baseUrl);
+    this.sms = new SMSModule(config.apiKey, this.baseUrl);
   }
 }
 

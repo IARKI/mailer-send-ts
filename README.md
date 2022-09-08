@@ -39,11 +39,11 @@
 - [X] Verify Domain
 
 ### Inbound routing
- - [ ] Get a list of inbound routes
- - [ ] Get a single inbound route
- - [ ] Add an inbound route
- - [ ] Update an inbound route
- - [ ] Delete an inbound route
+- [ ] Get a list of inbound routes
+- [ ] Get a single inbound route
+- [ ] Add an inbound route
+- [ ] Update an inbound route
+- [ ] Delete an inbound route
 
 ### Messages
 
@@ -68,9 +68,9 @@
 - [X] Unsubscribes
 
 ### Templates
- - [ ] Get templates
- - [ ] Get a single template
- - [ ] Delete a template
+- [ ] Get templates
+- [ ] Get a single template
+- [ ] Delete a template
 
 ### Tokens
 
@@ -88,7 +88,7 @@
 - [ ] Delete a webhook
 
 ### SMS
-- [ ] Send an SMS
+- [X] Send an SMS
 
 ### Phone numbers
 - [ ] Get a list of SMS phone numbers
@@ -695,4 +695,30 @@ import { MailerSend } from "mailer-send-ts";
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 
 const response = await mailerSend.token.delete("your_token_id");
+```
+## SMS
+<a href="https://developers.mailersend.com/api/v1/sms.html">API Documentation</a>
+
+### Send SMS
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const personalization: SMSPersonalization[] = [];
+
+personalization.push(new SMSPersonalization("+19191234567", { name: "Dummy" }));
+personalization.push(new SMSPersonalization("+19199876543", { name: "Not Dummy" }));
+
+const params = new SMSParams()
+  .setFrom("+19191234567")
+  .setTo([
+    "+19191234567",
+    "+19199876543"
+  ])
+  .setText("Hey {{name}}! This is just a friendly hello :D")
+  .setPersonalization(personalization);
+
+const response = mailerSend.sms.send(params);
 ```
