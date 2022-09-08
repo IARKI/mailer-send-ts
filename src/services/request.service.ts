@@ -1,5 +1,6 @@
-import got from "got";
+import { request as gRequest } from "gaxios";
 import { APIResponse } from "../modules/MailerSend.module";
+import { GaxiosOptions } from "gaxios/build/src/common";
 
 export class RequestService {
   private readonly apiKey: string;
@@ -26,25 +27,30 @@ export class RequestService {
     return this.request("PUT", path, data);
   }
 
-  private async request(method: "POST" | "GET" | "DELETE" | "PUT", path: string, data?: any, queryParams?: any) {
+  private async request(method: "POST" | "GET" | "DELETE" | "PUT", path: string, body?: any, queryParams?: any) {
     try {
-      const requestParams = {
+      const requestParams: GaxiosOptions = {
+        url: path,
+        baseURL: this.baseUrl,
         method,
         headers: { Authorization: `Bearer ${this.apiKey}` },
-        responseType: "json" as any,
+        responseType: "json",
       } as any;
 
-      if (data) {
-        requestParams.json = data;
+      if (body) {
+        requestParams.data = body;
       }
       if (queryParams) {
-        requestParams.searchParams = queryParams;
+        requestParams.params = queryParams;
       }
-      const { headers, body, statusCode } = await got(`${this.baseUrl}${path}`, requestParams);
-      return { headers, body, statusCode };
+
+      const { headers, data, status } = await gRequest<APIResponse>(requestParams);
+
+      return { headers, body: data, statusCode: status };
     } catch (e: any) {
       if (e?.response) {
-        throw { headers: e.response.headers, body: e.response.body, statusCode: e.response.statusCode };
+        const { headers, data, status } = e.response;
+        throw { headers, body: data, statusCode: status };
       } else {
         throw e;
       }

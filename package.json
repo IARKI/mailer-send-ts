@@ -45,7 +45,7 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "got": "^11.8.2"
+    "gaxios": "^5.0.1"
   },
   "keywords": [
     "mailersend",
