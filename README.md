@@ -10,6 +10,12 @@
 
 ### Supported APIs
 
+### Email
+
+- [X] Send an email
+- [X] Send bulk emails
+- [X] Get bulk email status
+
 ### Activity
 
 - [X] Get a list of activities
@@ -32,14 +38,22 @@
 - [X] Get DNS Records
 - [X] Verify Domain
 
-### Email
-
-- [X] Send an email
+### Inbound routing
+ - [ ] Get a list of inbound routes
+ - [ ] Get a single inbound route
+ - [ ] Add an inbound route
+ - [ ] Update an inbound route
+ - [ ] Delete an inbound route
 
 ### Messages
 
 - [X] Get a list of messages
 - [X] Get info for a single message
+
+### Scheduled messages
+- [ ] Get list of scheduled messages
+- [ ] Get a single scheduled message
+- [ ] Delete a scheduled message
 
 ### Recipients
 
@@ -72,6 +86,42 @@
 - [ ] Create a webhook
 - [ ] Update a webhook
 - [ ] Delete a webhook
+
+### SMS
+- [ ] Send an SMS
+
+### Phone numbers
+- [ ] Get a list of SMS phone numbers
+- [ ] Get an SMS phone number
+- [ ] Update a single SMS phone number
+- [ ] Delete an SMS phone number
+
+### SMS Messages
+- [ ] Get a list of SMS messages
+- [ ] Get an SMS message
+
+### SMS Activity
+- [ ] Get a list of activities
+- [ ] Get activity of a single message
+
+### SMS Recipients
+- [ ] Get a list of SMS recipients
+- [ ] Get an SMS recipient
+- [ ] Update a single SMS recipient
+
+### SMS Webhooks
+- [ ] Get a list of SMS webhooks
+- [ ] Get a single SMS webhook
+- [ ] Create an SMS webhook
+- [ ] Update a single SMS webhook
+- [ ] Delete an SMS webhook
+
+### SMS Inbound routing
+- [ ] Get a list of SMS inbound routes
+- [ ] Get a single SMS inbound route
+- [ ] Add an SMS inbound route
+- [ ] Update an inbound route
+- [ ] Delete an SMS inbound route
 
 # Installation
 
@@ -266,6 +316,58 @@ const emailParams = new EmailParams()
   .setAttachments(attachments);
 
 mailerSend.email.send(emailParams);
+```
+
+### Send bulk emails
+
+```typescript
+import { MailerSend, EmailParams, Sender, Recipient } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const bulkEmails: EmailParams[] = [];
+
+const sentFrom = new Sender("your@domain.com", "Your name");
+
+const recipients = [
+  new Recipient("your@client.com", "Your Client")
+];
+
+const emailParams = new EmailParams()
+  .setFrom(sentFrom)
+  .setTo(recipients)
+  .setSubject("Your subject")
+  .setText("Hello world!")
+  .setHtml("<b>Hello world!</b>");
+
+bulkEmails.push(emailParams);
+
+const sentFrom2 = new Sender("your@domain.com", "Your name");
+
+const recipients2 = [
+  new Recipient("your@client.com", "Your Client")
+];
+
+const emailParams2 = new EmailParams()
+  .setFrom(sentFrom2)
+  .setTo(recipients2)
+  .setSubject("Your subject")
+  .setText("Hello world2!")
+  .setHtml("<b>Hello world2!</b>");
+
+bulkEmails.push(emailParams2);
+
+const response = await mailerSend.email.sendBulk(bulkEmails);
+```
+
+### Get bulk emails status
+
+```typescript
+import { MailerSend, EmailParams, Sender, Recipient } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const response = await mailerSend.email.getBulkStatus("bulk_id_here");
 ```
 
 ## Activity

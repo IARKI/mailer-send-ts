@@ -10,6 +10,14 @@ export class EmailModule extends RequestService {
   async send(params: EmailParams): Promise<APIResponse> {
     return await this.post<EmailParams>("/email", params);
   }
+
+  async sendBulk(params: EmailParams[]): Promise<APIResponse> {
+    return await this.post<EmailParams[]>("/bulk-email", params);
+  }
+
+  async getBulkStatus(bulkId: string): Promise<APIResponse> {
+    return await this.get(`/bulk-email/${bulkId}`);
+  }
 }
 
 export interface Variable {
