@@ -11,24 +11,20 @@
 ### Supported APIs
 
 ### Email
-
 - [X] Send an email
 - [X] Send bulk emails
 - [X] Get bulk email status
 
 ### Activity
-
 - [X] Get a list of activities
 
 ### Analytics
-
 - [ ] Analytics by date
 - [ ] Opens by country
 - [ ] Opens by user-agent name
 - [ ] Opens by reading environment
 
 ### Domains
-
 - [X] Get a list of domains
 - [X] Get a single domain
 - [X] Add domain
@@ -46,7 +42,6 @@
 - [ ] Delete an inbound route
 
 ### Messages
-
 - [X] Get a list of messages
 - [X] Get info for a single message
 
@@ -56,7 +51,6 @@
 - [ ] Delete a scheduled message
 
 ### Recipients
-
 - [X] Get recipients
 - [X] Get a single recipient
 - [X] Delete a recipient
@@ -73,14 +67,11 @@
 - [ ] Delete a template
 
 ### Tokens
-
 - [X] Create a token
 - [X] Update a token
 - [X] Delete a token
 
 ### Webhooks
-
-- [ ] Webhooks overview
 - [ ] List webhooks
 - [ ] Get a webhook
 - [ ] Create a webhook
