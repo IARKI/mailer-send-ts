@@ -1,4 +1,4 @@
-import { EmailParams } from "../models";
+import { EmailParams, EmailWebhook, IEmailWebhookUpdate } from "../models";
 import { RequestService } from "../services/request.service";
 import { APIResponse } from "./MailerSend.module";
 
@@ -17,6 +17,26 @@ export class EmailModule extends RequestService {
 
   async getBulkStatus(bulkId: string): Promise<APIResponse> {
     return await this.get(`/bulk-email/${bulkId}`);
+  }
+
+  async createWebhook(params: EmailWebhook): Promise<APIResponse> {
+    return await this.post<EmailWebhook>("/webhooks", params);
+  }
+
+  async listWebhook(domainId: string): Promise<APIResponse> {
+    return await this.get("/webhooks", { domain_id: domainId });
+  }
+
+  async getWebhook(id: string): Promise<APIResponse> {
+    return await this.get(`/webhooks/${id}`);
+  }
+
+  async updateWebhook(id: string, updates: Partial<IEmailWebhookUpdate>): Promise<APIResponse> {
+    return await this.put(`/webhooks/${id}`, updates);
+  }
+
+  async deleteWebhook(id: string): Promise<APIResponse> {
+    return await this.deleteReq(`/webhooks/${id}`);
   }
 }
 

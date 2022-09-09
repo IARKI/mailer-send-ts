@@ -8,33 +8,50 @@
 
 ### For response Body, Headers and Status Codes please visit <a href="https://developers.mailersend.com/">Official API Docs</a>
 
+### Utils
+
+- [X] [Webhook verify (Email and SMS)](#webhook-signature-check)
+
 ### Supported APIs
 
 ### Email
-- [X] Send an email
-- [X] Send bulk emails
-- [X] Get bulk email status
+
+- [X] [Send an email](#send-an-email)
+- [X] [Send bulk emails](#send-bulk-emails)
+- [X] [Get bulk email status](#get-bulk-emails-status)
+
+### Email Webhooks
+
+- [X] [List webhooks](#list-email-webhooks)
+- [X] [Get a webhook](#get-email-webhook)
+- [X] [Create a webhook](#create-email-webhook)
+- [X] [Update a webhook](#update-email-webhook)
+- [X] [Delete a webhook](#delete-email-webhook)
 
 ### Activity
-- [X] Get a list of activities
+
+- [X] [Get a list of activities](#get-a-list-of-activities)
 
 ### Analytics
+
 - [ ] Analytics by date
 - [ ] Opens by country
 - [ ] Opens by user-agent name
 - [ ] Opens by reading environment
 
 ### Domains
-- [X] Get a list of domains
-- [X] Get a single domain
-- [X] Add domain
-- [X] Delete a domain
-- [X] Get recipients for a domain
-- [X] Update domain settings
-- [X] Get DNS Records
-- [X] Verify Domain
+
+- [X] [Get a list of domains](#get-a-list-of-domains)
+- [X] [Get a single domain](#get-a-single-domain)
+- [X] [Add domain](#create-domain)
+- [X] [Delete a domain](#delete-a-domain)
+- [X] [Get recipients for a domain](#get-recipients-for-a-domain)
+- [X] [Update domain settings](#update-domain-settings)
+- [X] [Get DNS Records](#get-dns-records)
+- [X] [Verify Domain](#verify-a-domain)
 
 ### Inbound routing
+
 - [ ] Get a list of inbound routes
 - [ ] Get a single inbound route
 - [ ] Add an inbound route
@@ -42,65 +59,69 @@
 - [ ] Delete an inbound route
 
 ### Messages
-- [X] Get a list of messages
-- [X] Get info for a single message
+
+- [X] [Get a list of messages](#get-a-list-of-messages)
+- [X] [Get info for a single message](#get-single-message)
 
 ### Scheduled messages
+
 - [ ] Get list of scheduled messages
 - [ ] Get a single scheduled message
 - [ ] Delete a scheduled message
 
 ### Recipients
-- [X] Get recipients
-- [X] Get a single recipient
-- [X] Delete a recipient
-- [X] Get recipients from a suppression list
-- [X] Add recipients to a suppression list
-- [X] Delete recipients from a suppression list
-- [X] Hard Bounces
-- [X] Spam Complaints
-- [X] Unsubscribes
+
+- [X] [Get recipients](#get-recipients)
+- [X] [Get a single recipient](#get-a-single-recipient)
+- [X] [Delete a recipient](#delete-a-recipient)
+- [X] [Get recipients from a suppression list](#get-recipients-from-a-suppression-list)
+- [X] [Add recipients to a suppression list](#add-recipients-to-a-suppression-list)
+- [X] [Delete recipients from a suppression list](#delete-recipients-from-a-suppression-list)
+- [X] [Hard Bounces](#get-hard-bounced-recipients)
+- [X] [Spam Complaints](#get-recipients-who-have-spam-complained)
+- [X] [Unsubscribes](#unsubscribes-list)
 
 ### Templates
+
 - [ ] Get templates
 - [ ] Get a single template
 - [ ] Delete a template
 
 ### Tokens
-- [X] Create a token
-- [X] Update a token
-- [X] Delete a token
 
-### Webhooks
-- [ ] List webhooks
-- [ ] Get a webhook
-- [ ] Create a webhook
-- [ ] Update a webhook
-- [ ] Delete a webhook
+- [X] [Create a token](#create-a-token)
+- [X] [Update a token](#update-a-token)
+- [X] [Delete a token](#delete-a-token)
 
 ### SMS
-- [X] Send an SMS
+
+- [X] [Send an SMS](#send-sms)
 
 ### Phone numbers
+
 - [ ] Get a list of SMS phone numbers
 - [ ] Get an SMS phone number
 - [ ] Update a single SMS phone number
 - [ ] Delete an SMS phone number
 
 ### SMS Messages
+
 - [ ] Get a list of SMS messages
 - [ ] Get an SMS message
 
 ### SMS Activity
+
 - [ ] Get a list of activities
 - [ ] Get activity of a single message
 
 ### SMS Recipients
+
 - [ ] Get a list of SMS recipients
 - [ ] Get an SMS recipient
 - [ ] Update a single SMS recipient
 
 ### SMS Webhooks
+
 - [ ] Get a list of SMS webhooks
 - [ ] Get a single SMS webhook
 - [ ] Create an SMS webhook
@@ -108,6 +129,7 @@
 - [ ] Delete an SMS webhook
 
 ### SMS Inbound routing
+
 - [ ] Get a list of SMS inbound routes
 - [ ] Get a single SMS inbound route
 - [ ] Add an SMS inbound route
@@ -361,6 +383,74 @@ const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 const response = await mailerSend.email.getBulkStatus("bulk_id_here");
 ```
 
+## Email Webhooks
+
+<a href="https://developers.mailersend.com/api/v1/webhooks.html">API Documentation</a>
+
+### Create email webhook
+
+```typescript
+import { MailerSend, EmailWebhook, EmailWebhookEventType } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const params = new EmailWebhook()
+  .setUrl("https://test.com/webhook")
+  .setName("Webhook Name")
+  .setEvents([EmailWebhookEventType.SENT, EmailWebhookEventType.OPENED])
+  .setDomainId("test_domain")
+  .setEnabled(true);
+
+
+const response = await mailerSend.email.createWebhook(params);
+```
+
+### List email webhooks
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const response = await mailerSend.email.listWebhook("domain_id_here");
+```
+
+### Get email webhook
+
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const response = await mailerSend.email.getWebhook("webhook_id_here");
+```
+
+### Update email webhook
+
+```typescript
+import { MailerSend, IEmailWebhookUpdate, EmailWebhookEventType } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const updates: Partial<IEmailWebhookUpdate> = {
+  enabled: true,
+  url: "https://new-url.com/webhook",
+  name: "New name",
+  events: [EmailWebhookEventType.CLICKED]
+}
+
+const response = await mailerSend.email.updateWebhook("webhook_id_here", updates);
+```
+
+### Delete email webhook
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
+
+const response = await mailerSend.email.deleteWebhook("webhook_id_here");
+```
+
 ## Activity
 
 <a href="https://developers.mailersend.com/api/v1/activity.html">API Documentation</a>
@@ -503,6 +593,7 @@ const domainUpdates: DomainSettings = {
 
 const response = await mailerSend.domain.updateSettings("your_domain_id", domainUpdates);
 ```
+
 ### Get DNS Records
 
 ```typescript
@@ -648,12 +739,25 @@ const queryParams: RecipientsQueryParams = {
 };
 
 // Query params are not required
-const spamComplaintsList = await mailerSend.recipient.spamComplaintsList(queryParams);
+const response = await mailerSend.recipient.spamComplaintsList(queryParams);
+```
+
+### Unsubscribes list
+```typescript
+import { MailerSend } from "mailer-send-ts";
+
+const queryParams: RecipientsQueryParams = {
+  limit: 10, // Default 25.Min 10, Max 50
+  page: 2,
+  domain_id: "your_domain_id" // not required
+};
+
+const response = await mailerSend.recipient.unsubscribesList(queryParams);
 ```
 
 ## Tokens
-<a href="https://developers.mailersend.com/api/v1/tokens.html">API Documentation</a>
 
+<a href="https://developers.mailersend.com/api/v1/tokens.html">API Documentation</a>
 
 ### Create a token
 
@@ -674,9 +778,8 @@ import { MailerSend } from "mailer-send-ts";
 
 const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 
-const response = await mailerSend.token.updateSettings("your_token_id", {status: "pause"});
+const response = await mailerSend.token.updateSettings("your_token_id", { status: "pause" });
 ```
-
 
 ### Delete a token
 
@@ -687,7 +790,9 @@ const mailerSend = new MailerSend({ apiKey: "your_api_key_here" });
 
 const response = await mailerSend.token.delete("your_token_id");
 ```
+
 ## SMS
+
 <a href="https://developers.mailersend.com/api/v1/sms.html">API Documentation</a>
 
 ### Send SMS
@@ -713,3 +818,26 @@ const params = new SMSParams()
 
 const response = mailerSend.sms.send(params);
 ```
+
+## Utils
+
+### Webhook signature check
+
+```typescript
+import { MailerUtils } from "mailer-send-ts";
+
+MailerUtils.verifyWebHook(rawBody, signature, signinSecret);
+```
+
+#### Arguments
+
+**rawBody** - request rawBody (not json)   
+_Note!_ If you are using express with body parser, check <a href="https://flaviocopes.com/express-get-raw-body">here</a>
+how to extract rawBody
+
+**signature** - webhook signature found in request's header - `signature`
+
+**signinSecret** - signing secret is a random string that is generated when you create a webhook 
+
+    
+

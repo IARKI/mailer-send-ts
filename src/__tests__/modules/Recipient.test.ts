@@ -100,12 +100,12 @@ describe("Recipient Module", () => {
       .get("/suppressions/unsubscribes")
       .query(params)
       .reply(200, { data: [{ id: "id_here" }] }, { header1: "unsubscribes-header" });
-    const spamComplaintsList = await recipientModule.unsubscribesList(params);
-    expect(spamComplaintsList.headers).toMatchObject({
+    const unsubscribesList = await recipientModule.unsubscribesList(params);
+    expect(unsubscribesList.headers).toMatchObject({
       header1: "unsubscribes-header",
       "content-type": "application/json",
     });
-    expect(spamComplaintsList.body).toMatchObject({ data: [{ id: "id_here" }] });
-    expect(spamComplaintsList.statusCode).toBe(200);
+    expect(unsubscribesList.body).toMatchObject({ data: [{ id: "id_here" }] });
+    expect(unsubscribesList.statusCode).toBe(200);
   });
 });
