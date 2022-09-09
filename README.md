@@ -2,7 +2,12 @@
 
 # Typescript MailerSend library for NodeJS
 
-![GitHub top language](https://img.shields.io/github/languages/top/IARKI/mailer-send-ts) ![NPM](https://img.shields.io/npm/l/mailer-send-ts) ![npm](https://img.shields.io/npm/v/mailer-send-ts)
+![Top language](https://img.shields.io/github/languages/top/IARKI/mailer-send-ts)
+![NPM licences](https://img.shields.io/npm/l/mailer-send-ts)
+![NPM Version](https://img.shields.io/npm/v/mailer-send-ts)
+![Coverage branches](https://raw.githubusercontent.com/IARKI/mailer-send-ts/release/coverage/badge-branches.svg)
+![Coverage functions](https://raw.githubusercontent.com/IARKI/mailer-send-ts/release/coverage/badge-functions.svg)
+![Coverage lines](https://raw.githubusercontent.com/IARKI/mailer-send-ts/release/coverage/badge-lines.svg)
 
 ### For official javascript library please visit <a href="https://github.com/mailersend/mailersend-nodejs">HERE</a>
 
