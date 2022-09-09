@@ -1,5 +1,4 @@
-import { SMSParams } from "../../models/SMSParams";
-import { SMSPersonalization } from "../../models/SMSPersonalization";
+import { SMSParams, SMSPersonalization } from "../../models";
 
 describe("SMS Params", () => {
   it("constructor", () => {

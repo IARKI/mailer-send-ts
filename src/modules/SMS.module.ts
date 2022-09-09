@@ -1,5 +1,5 @@
 import { RequestService } from "../services/request.service";
-import { SMSParams } from "../models/SMSParams";
+import { SMSParams } from "../models";
 
 export class SMSModule extends RequestService {
   constructor(apiKey: string, baseUrl: string) {

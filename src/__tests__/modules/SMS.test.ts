@@ -1,6 +1,5 @@
 import { SMSModule } from "../../modules/SMS.module";
-import { SMSPersonalization } from "../../models/SMSPersonalization";
-import { SMSParams } from "../../models/SMSParams";
+import { SMSPersonalization, SMSParams } from "../../models";
 import * as nock from "nock";
 
 describe("SMS Module", () => {
